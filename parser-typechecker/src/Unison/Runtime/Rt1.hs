@@ -329,6 +329,9 @@ builtinCompilationEnv = CompilationEnv (builtinsMap <> IR.builtins) mempty
     , mk1 "Float.fromText"      att (pure . IR.maybeToOptional . fmap F) (
         (\x -> readMaybe x :: Maybe Double) . Text.unpack)
 
+    -- Nat Utils
+    , mk1 "Nat.toText"          atn (pure . T) (Text.pack . show)          
+
     , mk2 "Debug.watch" att at id (\t v -> putStrLn (Text.unpack t) *> pure v)
     ]
 
